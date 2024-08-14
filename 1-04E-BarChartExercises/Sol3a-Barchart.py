@@ -11,8 +11,10 @@ import plotly.graph_objs as go
 import pandas as pd
 
 # create a DataFrame from the .csv file:
-df = pd.read_csv('../data/mocksurvey.csv',index_col=0)
-
+#df = pd.read_csv('../data/mocksurvey.csv',index_col=0)
+df= pd.DataFrame(pd.read_csv('Data/mocksurvey.csv', index_col=0))
+print(df)
+print(df.columns)
 # create traces using a list comprehension:
 data = [go.Bar(
     x = df.index,

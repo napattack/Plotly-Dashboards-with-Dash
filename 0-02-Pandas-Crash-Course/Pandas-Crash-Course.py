@@ -12,6 +12,7 @@ import numpy as np
 # More options: https://pandas.pydata.org/pandas-docs/stable/io.html
 df = pd.read_csv('salaries.csv')
 
+
 print(df)
 
 

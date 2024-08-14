@@ -6,25 +6,36 @@
 
 # Perform imports here:
 
-
+import pandas as pd
+import numpy as np
+import plotly.graph_objs as go
+import plotly.offline as pyo
 
 
 # Create a pandas DataFrame from 2010YumaAZ.csv
-df = pd.read_csv('../data/2010YumaAZ.csv')
+df = pd.read_csv('Data/2010YumaAZ.csv')
 days = ['TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY','MONDAY']
-
+print(df)
 
 # Use a for loop (or list comprehension to create traces for the data list)
 data = []
 
 for day in days:
+    df_days = df[df['DAY']== day]
     # What should go inside this Scatter call?
-    trace = go.Scatter()
+    trace = go.Scatter(
+        x=df_days['LST_TIME'],
+        y= df_days['T_HR_AVG'], # y=df[df['DAY']==day]['T_HR_AVG]
+        mode= 'lines',
+        name = day
+    )
     data.append(trace)
 
 # Define the layout
+layout = go.Layout(title='daily temp')
 
-
+fig= go.Figure(data= data, layout=layout)
+pyo.plot(fig)
 
 
 

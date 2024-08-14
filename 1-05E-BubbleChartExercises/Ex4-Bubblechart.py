@@ -4,8 +4,12 @@
 # 'horsepower', 'weight', 'acceleration', 'model_year', 'origin', 'name'
 ######
 
-# Perform imports here:
+import plotly.offline as pyo
+import plotly.graph_objs as go 
+import pandas as pd
 
+df=pd.read_csv('Data/mpg.csv')
+print(df)
 
 
 
@@ -14,8 +18,28 @@
 
 # create data by choosing fields for x, y and marker size attributes
 
+data = [
+    go.Scatter(
+        x=df['weight'], 
+        y=df['displacement'], 
+        mode='markers', 
+        marker=dict(
+            size= df['model_year']/5,
+            color= df['origin'],
+            showscale= True
+        )
 
+    )
+]
+layout= go.Layout(
+    title='mybubble'
+)
 
+fig= go.Figure(
+    data, layout
+)
+
+pyo.plot(fig)
 
 
 
